@@ -7,12 +7,34 @@ let catTop = -50;
 let catLeft = 300;
 
 let guyPositions = [
-  { x: -270, y: -300 },
-  { x: -353, y: -300 },
-  { x: -443, y: -300 },
-  { x: -520, y: -300 },
-  { x: -605, y: -300 },
-  { x: -685, y: -300 },
+  { x: -270, y: -300, height: 130, width: 80, top: 200 },
+  { x: -353, y: -300, height: 130, width: 80, top: 200 },
+  { x: -443, y: -300, height: 130, width: 80, top: 200 },
+  { x: -520, y: -300, height: 130, width: 80, top: 200 },
+  { x: -605, y: -300, height: 130, width: 80, top: 200 },
+  { x: -685, y: -300, height: 130, width: 80, top: 200 }
+];
+
+let guyStartle = [
+  { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: 0 },
+  { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: -2 },
+  { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: -4 },
+  { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: -6 },
+  { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: -8 },
+  { x: -80, y: -55, height: 150 , width: 100, top: 190, rotate: -10 },
+  { x: -80, y: -55, height: 150 , width: 100, top: 190, rotate: -8 },
+  { x: -80, y: -55, height: 150 , width: 100, top: 190, rotate: -6 },
+  { x: -80, y: -55, height: 150 , width: 100, top: 190, rotate: -4 },
+  { x: -80, y: -55, height: 150 , width: 100, top: 190, rotate: -2 },
+  { x: -80, y: -55, height: 150 , width: 100, top: 190, rotate: 0 },
+  { x: -80, y: -55, height: 150 , width: 100, top: 190, rotate: 0 },
+  { x: -605, y: -300, height: 130, width: 80, top: 200, rotate: 0 },
+  { x: -520, y: -300, height: 130, width: 80, top: 200, rotate: 0 },
+  { x: -0, y: -65, height: 130, width: 80, top: 200, rotate: 0 },
+  { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: 0 },
+  { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: 0 },
+  { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: 0 },
+  { x: -186, y: -15, height: 130, width: 80, top: 200, rotate: 0 }
 ];
 
 let catFallPositions = [
@@ -23,7 +45,7 @@ let catFallPositions = [
   { x: 0, y: -100 },
   { x: 0, y: -125 },
   { x: 0, y: -150 },
-  { x: 0, y: -175 },
+  { x: 0, y: -175 }
 ];
 
 let catLeapPositions = [
@@ -74,6 +96,7 @@ setTimeout(function() {
 
     clearInterval(catFallClear);
     catFall();
+    startleGuy();
   }, 570);
 
 }, 2300);
@@ -112,4 +135,20 @@ function catLeap() {
   setTimeout(function() {
     clearInterval(catLeapClear);
   }, 900);
+};
+
+function startleGuy() {
+  guyCounter = 0;
+  let clearStartle = setInterval(function() {
+    guy.style.backgroundPositionX = guyStartle[guyCounter].x + 'px';
+    guy.style.backgroundPositionY = guyStartle[guyCounter].y + 'px';
+    guy.style.height = guyStartle[guyCounter].height + 'px';
+    guy.style.width = guyStartle[guyCounter].width + 'px';
+    guy.style.top = guyStartle[guyCounter].top + 'px';
+    guy.style.transform = `rotate(${ guyStartle[guyCounter].rotate }deg)`;
+    guyCounter++;
+    if (guyCounter >= guyStartle.length) {
+      guyCounter = guyStartle.length - 1;
+    };
+  }, 50);
 };
