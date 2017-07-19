@@ -1,0 +1,51 @@
+body {
+  position: relative;
+}
+
+.image {
+  background-repeat: no-repeat;
+}
+
+.guy {
+  background-image: url('assets/bow-arrow.png');
+  height: 130px;
+  width: 80px;
+  background-position: -270px -300px;
+  border: solid 1px black;
+  position: absolute;
+  top: 200px;
+}
+
+.arrow {
+  background-image: url('assets/bow-arrow.png');
+  height: 860px;
+  width: 1880px;
+  background-position: 0 0;
+  position: absolute;
+  top: 300px;
+}
+
+.cat {
+  background-image: url('assets/cat2.png');
+  height: 25px;
+  width: 50px;
+  position: absolute;
+  top: -50px;
+  left: 300px;
+  border: 1px solid black;
+  /*background-position: 0, 0;*/
+}
+
+.cat2 {
+  background-image: url('assets/cat2.png');
+  height: 425px;
+  width: 450px;
+  position: absolute;
+  top: 450px;
+  left: 800px;
+  border: 1px solid black;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
