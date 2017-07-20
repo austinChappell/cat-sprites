@@ -2,6 +2,10 @@ body {
   position: relative;
 }
 
+.hide {
+  display: none;
+}
+
 .image {
   background-repeat: no-repeat;
 }
@@ -11,18 +15,18 @@ body {
   height: 130px;
   width: 80px;
   background-position: -270px -300px;
-  border: solid 1px black;
   position: absolute;
   top: 200px;
 }
 
 .arrow {
   background-image: url('assets/bow-arrow.png');
-  height: 860px;
-  width: 1880px;
-  background-position: 0 0;
+  height: 20px;
+  width: 150px;
+  background-position: -670px -120px;
   position: absolute;
-  top: 300px;
+  top: 235px;
+  left: -350px;
 }
 
 .cat {
@@ -32,20 +36,22 @@ body {
   position: absolute;
   top: -50px;
   left: 300px;
-  border: 1px solid black;
   /*background-position: 0, 0;*/
 }
 
-.cat2 {
-  background-image: url('assets/cat2.png');
-  height: 425px;
-  width: 450px;
+.explosion {
+  background-image: url('assets/explosion-sprite.png');
+  height: 100px;
+  width: 100px;
   position: absolute;
-  top: 450px;
-  left: 800px;
-  border: 1px solid black;
+  left: 1020px;
+  top: 235px;
 }
 
 .rotate {
   transform: rotate(90deg);
+}
+
+.hide {
+  display: none;
 }

@@ -5,6 +5,10 @@ let cat = document.querySelector('.cat');
 let catFallCounter = 0;
 let catTop = -50;
 let catLeft = 300;
+let arrow = document.querySelector('.arrow');
+let arrowLeft = 350;
+let stopFall;
+let explosionImage = document.querySelector('.explosion');
 
 let guyPositions = [
   { x: -270, y: -300, height: 130, width: 80, top: 200 },
@@ -34,7 +38,20 @@ let guyStartle = [
   { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: 0 },
   { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: 0 },
   { x: -290, y: -158, height: 130, width: 80, top: 200, rotate: 0 },
-  { x: -186, y: -15, height: 130, width: 80, top: 200, rotate: 0 }
+  { x: -186, y: -15, height: 130, width: 80, top: 200, rotate: 0 },
+  { x: -280, y: -15, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -280, y: -15, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -280, y: -15, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -280, y: -15, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -280, y: -15, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -280, y: -15, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -400, y: -10, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -400, y: -10, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -400, y: -10, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -400, y: -10, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -400, y: -10, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -400, y: -10, height: 130, width: 120, top: 200, rotate: 0 },
+  { x: -510, y: -10, height: 130, width: 120, top: 200, rotate: 0 }
 ];
 
 let catFallPositions = [
@@ -71,6 +88,39 @@ let catLeapPositions = [
   { x: 0, y: -300 }
 ];
 
+let catRunPositions = [
+  { x: 0, y: 0 },
+  { x: 0, y: -25 },
+  { x: 0, y: -50 },
+  { x: 0, y: -75 },
+  { x: 0, y: -100 },
+  { x: 0, y: -125 },
+  { x: 0, y: -150 },
+  { x: 0, y: -175 },
+  { x: 0, y: -200 },
+  { x: 0, y: -225 },
+  { x: 0, y: -250 },
+  { x: 0, y: -275 },
+  { x: 0, y: -300 }
+];
+
+let explosionPositions = [
+  { x: 0, y: 0 },
+  { x: -98, y: 0 },
+  { x: -194, y: 0 },
+  { x: -290, y: 0 },
+  { x: -387, y: 0 },
+  { x: 5, y: -98 },
+  { x: -90, y: -98 },
+  { x: -188, y: -98 },
+  { x: -284, y: -98 },
+  { x: -380, y: -98 },
+  { x: 4, y: -194 },
+  { x: -90, y: -194 },
+  { x: -186, y: -194 },
+  { x: -283, y: -194 }
+];
+
 let guyWalkClear = setInterval(function() {
   guy.style.backgroundPositionX = guyPositions[guyCounter].x + 'px';
   guy.style.backgroundPositionY = guyPositions[guyCounter].y + 'px';
@@ -81,6 +131,116 @@ let guyWalkClear = setInterval(function() {
   }
   guyLeft += 10 ;
 }, 100);
+
+function catFall() {
+  let counter = 0;
+  stopFall = setInterval(function() {
+    while(counter < catFallPositions.length) {
+      cat.style.backgroundPositionY = catFallPositions[counter].y + 'px';
+      counter++;
+    }
+  }, 50);
+  clearInterval(stopFall);
+  catLeap();
+};
+
+function catLeap() {
+  let x = 20;
+  let catLeapCounter = 0;
+  let catLeapClear = setInterval(function() {
+    setTimeout(function() {
+      catLeapPositions.forEach(function(position) {
+        cat.style.backgroundPositionY = position.y + 'px';
+      });
+    }, 300);
+    cat.style.top = catTop + 'px';
+    cat.style.left = catLeft + 'px';
+    catTop -= x;
+    catLeft += 20;
+    x -= 3;
+  }, 50);
+  setTimeout(function() {
+    clearInterval(catLeapClear);
+    catRun();
+  }, 900);
+};
+
+function catRun() {
+  let count = 0;
+  let killCat = setInterval(function() {
+    cat.style.backgroundPositionX = catRunPositions[count].x + 'px';
+    cat.style.backgroundPositionY = catRunPositions[count].y + 'px';
+    cat.style.left = catLeft + 'px';
+    catLeft += 20;
+    count++;
+    if (count >= catRunPositions.length) {
+      count = 0;
+    }
+  }, 100);
+  setTimeout(function() {
+    clearInterval(killCat);
+  }, 2000);
+};
+
+function startleGuy() {
+  guyCounter = 0;
+  let clearStartle = setInterval(function() {
+    guy.style.backgroundPositionX = guyStartle[guyCounter].x + 'px';
+    guy.style.backgroundPositionY = guyStartle[guyCounter].y + 'px';
+    guy.style.height = guyStartle[guyCounter].height + 'px';
+    guy.style.width = guyStartle[guyCounter].width + 'px';
+    guy.style.top = guyStartle[guyCounter].top + 'px';
+    guy.style.transform = `rotate(${ guyStartle[guyCounter].rotate }deg)`;
+    guyCounter++;
+    if (guyCounter >= guyStartle.length) {
+      guyCounter = guyStartle.length - 1;
+    };
+  }, 50);
+  setTimeout(function() {
+    clearInterval(clearStartle);
+  }, 2000);
+};
+
+function arrowFly() {
+  let arrowTop = 235;
+  let stopFly = setInterval(function() {
+    arrow.style.left = arrowLeft + 'px';
+    arrow.style.top = arrowTop + 'px';
+    arrowLeft += 10;
+    if (arrowLeft > 650) {
+      arrowTop += 2;
+    };
+    if (arrowLeft > 1010) {
+      arrowLeft = 1010;
+      arrow.style.display = 'none';
+      clearInterval(stopFly);
+      explode();
+    };
+  }, 20);
+};
+
+function explode() {
+  explosionImage.classList.remove('hide');
+  let direction = 'down';
+  let i = 0;
+  let endExplosion = setInterval(function() {
+    if (i < explosionPositions.length && direction === 'down') {
+      explosionImage.style.backgroundPositionX = explosionPositions[i].x + 'px';
+      explosionImage.style.backgroundPositionY = explosionPositions[i].y + 'px';
+      i++;
+    } else if(i > 0) {
+      cat.classList.add('hide');
+      direction = 'up';
+      i--;
+      explosionImage.style.backgroundPositionX = explosionPositions[i].x + 'px';
+      explosionImage.style.backgroundPositionY = explosionPositions[i].y + 'px';
+    };
+    if (i === 0) {
+      explosionImage.classList.add('hide');
+      clearInterval(endExplosion);
+    };
+  }, 100);
+};
 
 setTimeout(function() {
 
@@ -105,50 +265,8 @@ setTimeout(function() {
 
   clearInterval(guyWalkClear);
 
-}, 2800)
+}, 2800);
 
-function catFall() {
-  let stopFall = setInterval(function() {
-    while(catFallCounter < catFallPositions.length) {
-      cat.style.backgroundPositionY = catFallPositions[catFallCounter].y + 'px';
-      catFallCounter++;
-    }
-  }, 50);
-  catLeap();
-};
-
-function catLeap() {
-  let x = 20;
-  let catLeapCounter = 0;
-  let catLeapClear = setInterval(function() {
-    setTimeout(function() {
-      catLeapPositions.forEach(function(position) {
-        cat.style.backgroundPositionY = position.y + 'px';
-      });
-    }, 300);
-    cat.style.top = catTop + 'px';
-    cat.style.left = catLeft + 'px';
-    catTop -= x;
-    catLeft += 20;
-    x -= 3;
-  }, 50);
-  setTimeout(function() {
-    clearInterval(catLeapClear);
-  }, 900);
-};
-
-function startleGuy() {
-  guyCounter = 0;
-  let clearStartle = setInterval(function() {
-    guy.style.backgroundPositionX = guyStartle[guyCounter].x + 'px';
-    guy.style.backgroundPositionY = guyStartle[guyCounter].y + 'px';
-    guy.style.height = guyStartle[guyCounter].height + 'px';
-    guy.style.width = guyStartle[guyCounter].width + 'px';
-    guy.style.top = guyStartle[guyCounter].top + 'px';
-    guy.style.transform = `rotate(${ guyStartle[guyCounter].rotate }deg)`;
-    guyCounter++;
-    if (guyCounter >= guyStartle.length) {
-      guyCounter = guyStartle.length - 1;
-    };
-  }, 50);
-};
+setTimeout(function() {
+  arrowFly();
+}, 4500);
