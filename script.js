@@ -145,7 +145,7 @@ function catFall() {
 };
 
 function catLeap() {
-  let x = 20;
+  let y = 20;
   let catLeapCounter = 0;
   let catLeapClear = setInterval(function() {
     setTimeout(function() {
@@ -155,9 +155,9 @@ function catLeap() {
     }, 300);
     cat.style.top = catTop + 'px';
     cat.style.left = catLeft + 'px';
-    catTop -= x;
+    catTop -= y;
     catLeft += 20;
-    x -= 3;
+    y -= 3;
   }, 50);
   setTimeout(function() {
     clearInterval(catLeapClear);
