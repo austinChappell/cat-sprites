@@ -1,6 +1,4 @@
-# Project Title
-
-cat-sprites
+# Cat Sprites
 
 ## Project Description
 
@@ -22,4 +20,4 @@ The startleGuy function is invoked with a setTimeout function inside another set
 
 The arrowFly function is invoked with a setTimeout, and hard-coded to line up with the timing of the rest of the story-line. The image of the arrow does not change throughout the function, only the location. As the arrow's left position exceeds 1010px, the arrow is hidden, the interval is cleared, and the explode function is invoked.
 
-Upon invoking the explode function, the class 'hide' is removed from the explosion image, and the background positions are looped through the explosionPositions array. The direction variable is used to go backwards through the array once it reaches the end. At the turnaround of the array, the cat image is given the class 'hide'. As soon as it gets back to the start of the array, the interval is cleared, and the explosion image is hidden. 
+Upon invoking the explode function, the class 'hide' is removed from the explosion image, and the background positions are looped through the explosionPositions array. The direction variable is used to go backwards through the array once it reaches the end. At the turnaround of the array, the cat image is given the class 'hide'. As soon as it gets back to the start of the array, the interval is cleared, and the explosion image is hidden.

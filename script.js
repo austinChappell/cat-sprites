@@ -1,3 +1,5 @@
+// DEFINE VARIABLES
+
 let guy = document.querySelector('.guy');
 let guyCounter = 0;
 let guyLeft = 0;
@@ -121,6 +123,7 @@ let explosionPositions = [
   { x: -283, y: -194 }
 ];
 
+// GUY WALKS OUT INITIALLY
 let guyWalkClear = setInterval(function() {
   guy.style.backgroundPositionX = guyPositions[guyCounter].x + 'px';
   guy.style.backgroundPositionY = guyPositions[guyCounter].y + 'px';
@@ -132,6 +135,7 @@ let guyWalkClear = setInterval(function() {
   guyLeft += 10 ;
 }, 100);
 
+// CAT FALLING INITIALLY
 function catFall() {
   let counter = 0;
   stopFall = setInterval(function() {
@@ -144,6 +148,7 @@ function catFall() {
   catLeap();
 };
 
+// CAT JUMPS OFF GUY
 function catLeap() {
   let y = 20;
   let catLeapCounter = 0;
@@ -159,12 +164,15 @@ function catLeap() {
     catLeft += 20;
     y -= 3;
   }, 50);
+  // LEAP ENDS
   setTimeout(function() {
     clearInterval(catLeapClear);
+    // CAT RUNS
     catRun();
   }, 900);
 };
 
+// CAT RUNS
 function catRun() {
   let count = 0;
   let killCat = setInterval(function() {
@@ -182,6 +190,7 @@ function catRun() {
   }, 2000);
 };
 
+// ARCHER GETS HIT BY CAT
 function startleGuy() {
   guyCounter = 0;
   let clearStartle = setInterval(function() {
@@ -201,6 +210,7 @@ function startleGuy() {
   }, 2000);
 };
 
+// ARROW LEAVES THE BOW
 function arrowFly() {
   let arrowTop = 235;
   let stopFly = setInterval(function() {
@@ -219,6 +229,7 @@ function arrowFly() {
   }, 20);
 };
 
+// EXPLOSION OCCURS
 function explode() {
   explosionImage.classList.remove('hide');
   let direction = 'down';
